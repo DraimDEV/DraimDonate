@@ -1,0 +1,9 @@
+name: DraimDonate
+version: '${project.version}'
+main: me.draimgoose.DraimDonate
+api-version: 1.17
+author: DraimGooSe
+commands:
+  draimdonate:
+    description: Основная команда.
+    aliases: [donate, dn, qiwi, dshop, help]
