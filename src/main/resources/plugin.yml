@@ -1,9 +1,14 @@
 name: DraimDonate
 version: '${project.version}'
 main: me.draimgoose.DraimDonate
+softdepend: [HeadDatabase]
 api-version: 1.17
 author: DraimGooSe
 commands:
-  draimdonate:
+  dn:
     description: Основная команда.
-    aliases: [donate, dn, qiwi, dshop]
+    aliases: [draimdonate, donate, qiwi, dshop]
+
+permissions:
+  draimdonate.reload:
+    description: Права на команду /dn reload
