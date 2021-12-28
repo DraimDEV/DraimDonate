@@ -6,4 +6,4 @@ author: DraimGooSe
 commands:
   draimdonate:
     description: Основная команда.
-    aliases: [donate, dn, qiwi, dshop, help]
+    aliases: [donate, dn, qiwi, dshop]
