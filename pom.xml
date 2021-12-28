@@ -6,7 +6,7 @@
 
     <groupId>me.draimgoose</groupId>
     <artifactId>DraimDonate</artifactId>
-    <version>1.2</version>
+    <version>1.0</version>
     <packaging>jar</packaging>
 
     <name>DraimDonate</name>
@@ -23,8 +23,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.1</version>
                 <configuration>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
+                    <source>16</source>
+                    <target>16</target>
                 </configuration>
             </plugin>
             <plugin>
@@ -53,27 +53,75 @@
     </build>
 
     <repositories>
+        <!-- Spigot Lib Url -->
         <repository>
             <id>spigotmc-repo</id>
             <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
         </repository>
+        <!-- Paper Lib Url -->
         <repository>
-            <id>sonatype</id>
-            <url>https://oss.sonatype.org/content/groups/public/</url>
+            <id>papermc</id>
+            <url>https://papermc.io/repo/repository/maven-public/</url>
+        </repository>
+        <!-- Sonatype Lib Url -->
+        <repository>
+            <id>sonatype-snapshots</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </repository>
+        <repository>
+            <id>sonatype-central</id>
+            <url>https://oss.sonatype.org/content/repositories/central</url>
+        </repository>
+        <!-- Minecraft Lib URL-->
+        <repository>
+            <id>minecraft-repo</id>
+            <url>https://libraries.minecraft.net/</url>
+        </repository>
+        <!-- GitHub Lib URL -->
+        <repository>
+            <id>JitPack</id>
+            <url>https://jitpack.io</url>
+        </repository>
+        <!-- HDB Lib URL -->
+        <repository>
+            <id>HeadDatabase-API</id>
+            <url>https://mvn.intellectualsites.com/content/repositories/thirdparty/</url>
         </repository>
     </repositories>
 
     <dependencies>
+        <!-- Spigot Lib -->
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
-            <version>1.18-R0.1-SNAPSHOT</version>
+            <version>1.18.1-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
+        <!-- Paper Lib -->
+        <dependency>
+            <groupId>io.papermc.paper</groupId>
+            <artifactId>paper-api</artifactId>
+            <version>1.18.1-R0.1-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- QiWi Lib -->
         <dependency>
             <groupId>com.qiwi</groupId>
             <artifactId>bill-payments-java-sdk</artifactId>
             <version>1.5.0</version>
+        </dependency>
+        <!-- Minecraft Lib -->
+        <dependency>
+            <groupId>com.mojang</groupId>
+            <artifactId>authlib</artifactId>
+            <version>1.5.21</version>
+        </dependency>
+        <!-- HeadDatabase-API -->
+        <dependency>
+            <groupId>com.arcaniax</groupId>
+            <artifactId>HeadDatabase-API</artifactId>
+            <version>1.3.0</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 </project>
