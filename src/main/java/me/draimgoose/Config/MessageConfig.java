@@ -10,12 +10,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 
-public class MessageConfig {
-
+public class MessageConfig
+{
     private static MessageConfig mc;
     private File f;
     private FileConfiguration fc;
-
     public void setUp() {
         if(this.f == null) {
             this.f = new File(DraimDonate.getInstance().getDataFolder(), "msg.yml");

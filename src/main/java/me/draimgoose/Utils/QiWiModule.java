@@ -28,15 +28,13 @@ import java.util.Currency;
 import java.util.HashMap;
 import java.util.UUID;
 
-public class QiWiModule {
-
+public class QiWiModule
+{
     public static BillPaymentClient client;
     private static HashMap<UUID, String> clients;
-
     public static HashMap<UUID, String> getClients() {
         return QiWiModule.clients;
     }
-
     public static void generateBill(final Player p, final int sum) {
         if(!getClients().containsKey(p.getUniqueId())) {
              final CreateBillInfo billInfo = new CreateBillInfo(UUID.randomUUID().toString(), new MoneyAmount(BigDecimal.valueOf(sum), Currency.getInstance(MainConfig.getMain().getCFG().getString("DraimDonate.Currency"))), "Пополнение баланса игрока " + p.getName(), ZonedDateTime.now().plusHours(1L), new Customer(MainConfig.getMain().getCFG().getString("DraimDonate.Email"), UUID.randomUUID().toString(), MainConfig.getMain().getCFG().getString("DraimDonate.Phone")), MainConfig.getMain().getCFG().getString("DraimDonate.Site"));
@@ -64,7 +62,6 @@ public class QiWiModule {
             p.playSound(p.getLocation(), Sound.BLOCK_AMETHYST_BLOCK_STEP, 1.0f, 1.0f);
         }
     }
-
     public static void onPaid(final Player p) {
         final BillResponse response = QiWiModule.client.getBillInfo(getClients().get(p.getUniqueId()));
         final int amount = response.getAmount().getValue().intValue() * MainConfig.getMain().getCFG().getInt("DraimDonate.Multiplication");
@@ -75,7 +72,6 @@ public class QiWiModule {
         UsefulFunc.playSound(p, Sound.ENTITY_PLAYER_LEVELUP);
         UsefulFunc.sendLog(ChatColor.LIGHT_PURPLE + p.getName() + " "+UsefulFunc.config("messages","Messages.Console.Message", p, amount));
     }
-
     public static void checkBill(final Player p) {
         final BillResponse response = QiWiModule.client.getBillInfo(getClients().get(p.getUniqueId()));
         switch (response.getStatus().getValue()) {
@@ -100,7 +96,6 @@ public class QiWiModule {
             }
         }
     }
-
     static {
         QiWiModule.client = BillPaymentClientFactory.createCustom(DraimDonate.getQiwi(), new ApacheWebClient(HttpClients.createDefault()));
         QiWiModule.clients = new HashMap<UUID, String>();

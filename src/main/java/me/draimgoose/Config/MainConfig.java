@@ -10,12 +10,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 
-public class MainConfig {
-
+public class MainConfig
+{
     private static MainConfig mc;
     private File f;
     private FileConfiguration fc;
-
     public void setUp() {
         if (this.f == null) {
             this.f = new File(DraimDonate.getInstance().getDataFolder(), "QiWiCFG.yml");
@@ -32,12 +31,10 @@ public class MainConfig {
             }
         }
     }
-
     public void reloadCFG() {
         this.f = new File(DraimDonate.getInstance().getDataFolder(), "QiWiCFG.yml");
         this.fc = YamlConfiguration.loadConfiguration(this.f);
     }
-
     public FileConfiguration getCFG() {
         if(this.fc == null) {
             this.reloadCFG();

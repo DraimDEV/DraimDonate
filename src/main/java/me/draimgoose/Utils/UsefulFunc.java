@@ -12,17 +12,16 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Logger;
 
-public class UsefulFunc {
+public class UsefulFunc
+{
     public static String color(String mes) {
         return mes.replace("&", "§");
     }
-
     public static String placeholder(String mes, Player p, int amount) {
         String mes1 = mes.replace("%player%", p.getName());
         String mes2 = mes1.replace("%amount%", String.valueOf(amount));
         return mes2;
     }
-
     public static String CFGOperator(String mes, Player p, int amount) {
         String mes1 = UsefulFunc.placeholder(mes, p, amount);
         String mes2 = UsefulFunc.color(mes1);
@@ -47,12 +46,10 @@ public class UsefulFunc {
         }
         else return "<no existing string file selected>";
     }
-
     public static void sendUsefulMSG(Player p, String path) {
         String messages = MessageConfig.getMSG().getCFG().getString(path);
         p.sendMessage(color(messages));
     }
-
     public static void sendLog(String log) {
         Logger.getLogger("DraimDonate").info(color(log));
     }

@@ -10,8 +10,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 
-public class DBCore {
-
+public class DBCore
+{
     private static DBCore dbc;
     private File f;
     private FileConfiguration fc;
