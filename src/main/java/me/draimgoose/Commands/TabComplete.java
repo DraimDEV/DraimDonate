@@ -19,6 +19,7 @@ public class TabComplete implements TabCompleter
             completions.add("pay");
             completions.add("check");
             completions.add("reject");
+            completions.add("admin");
         }
 
         List<String> fit = new ArrayList<>();
