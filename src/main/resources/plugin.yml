@@ -5,9 +5,9 @@ softdepend: [HeadDatabase]
 api-version: 1.17
 author: DraimGooSe
 commands:
-  dn:
+  draimdonate:
     description: Основная команда.
-    aliases: [draimdonate, donate, qiwi, dshop]
+    aliases: [dn, donate, qiwi, dshop]
 
 permissions:
   draimdonate.reload:
