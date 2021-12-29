@@ -24,7 +24,7 @@ public class MainCommands implements CommandExecutor {
             final Player p = (Player)sender;
             if (args.length == 0) {
                 for (final String s : MessageConfig.getMSG().getCFG().getStringList("Messages.Help")) {
-                    p.sendMessage(UsefulFunc.color(s));
+                    p.sendMessage(ColorUtils.color(s));
                 }
                 return false;
             } final String lowerCase = args[0].toLowerCase();
@@ -34,7 +34,7 @@ public class MainCommands implements CommandExecutor {
                         MainConfig.getMain().reloadCFG();
                         DraimDonate.reloadToken();
                         MessageUtils.sendMessage(DraimDonate.getConfigString("messages.plugin-reload"), sender);
-                        UsefulFunc.sendLog(DraimDonate.getConfigString("messages.plugin-reload"));
+                        MessageUtils.sendLog(DraimDonate.getConfigString("messages.plugin-reload"));
                         SoundUtils.playSound(p, Sound.ENTITY_EXPERIENCE_ORB_PICKUP);
                         break;
                     }
@@ -48,7 +48,7 @@ public class MainCommands implements CommandExecutor {
                         return true;
                     }
                     QiWiModule.generateBill(p, Integer.parseInt(args[1]));
-                    UsefulFunc.sendLog(UsefulFunc.config("messages","Messages.Console.PayLink", p, Integer.parseInt(args[1])));
+                    MessageUtils.sendLog(MessageUtils.config("messages","Messages.Console.PayLink", p, Integer.parseInt(args[1])));
                     SoundUtils.playSound(p, Sound.ENTITY_PLAYER_LEVELUP);
                     break;
                 }
@@ -57,7 +57,7 @@ public class MainCommands implements CommandExecutor {
                         QiWiModule.checkBill(p);
                         break;
                     }
-                    UsefulFunc.sendUsefulMSG(p, "Messages.Another.NoBill");
+                    MessageUtils.sendUsefulMSG(p, "Messages.Another.NoBill");
                     SoundUtils.playSound(p, Sound.BLOCK_ANVIL_PLACE);
                     break;
                 }
@@ -65,7 +65,7 @@ public class MainCommands implements CommandExecutor {
                     if (QiWiModule.getClients().containsKey(p.getUniqueId())) {
                         QiWiModule.getClients().remove(p.getUniqueId());
                         MessageUtils.sendMessage(DraimDonate.getConfigString("messages.bill.reject"), sender);
-                        UsefulFunc.sendLog(UsefulFunc.config("messages", "Messages.Console.RejectLink", p, 0));
+                        MessageUtils.sendLog(MessageUtils.config("messages", "Messages.Console.RejectLink", p, 0));
                         SoundUtils.playSound(p, Sound.ENTITY_EXPERIENCE_ORB_PICKUP);
                         break;
                     }
@@ -74,9 +74,9 @@ public class MainCommands implements CommandExecutor {
                     break;
                 }
                 default: {
-                    p.sendMessage(UsefulFunc.config("messages","Messages.Another.NoArg", p, 0));
+                    p.sendMessage(MessageUtils.config("messages","Messages.Another.NoArg", p, 0));
                     for (final String s2 : MessageConfig.getMSG().getCFG().getStringList("Messages.Help")) {
-                        p.sendMessage(UsefulFunc.color(s2));
+                        p.sendMessage(ColorUtils.color(s2));
                     }
                     SoundUtils.playSound(p, Sound.BLOCK_ANVIL_PLACE);
                     break;

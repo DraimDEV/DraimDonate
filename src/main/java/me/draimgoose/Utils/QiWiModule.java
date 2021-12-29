@@ -42,13 +42,13 @@ public class QiWiModule
                 final BillResponse response = QiWiModule.client.createBill(billInfo);
                 QiWiModule.clients.put(p.getUniqueId(), response.getBillId());
                 String url = response.getPayUrl();
-                String msg = UsefulFunc.config("messages","Messages.Json.Message", p, sum);
-                String msg2 = UsefulFunc.config("messages","Messages.Json.Message2", p, sum);
-                String msgBorders = UsefulFunc.config("messages","Messages.Json.Message3", p, sum);
+                String msg = MessageUtils.config("messages","Messages.Json.Message", p, sum);
+                String msg2 = MessageUtils.config("messages","Messages.Json.Message2", p, sum);
+                String msgBorders = MessageUtils.config("messages","Messages.Json.Message3", p, sum);
                 p.sendMessage(msgBorders);
                 p.spigot().sendMessage(new ComponentBuilder(msg)
                         .event(new ClickEvent(ClickEvent.Action.OPEN_URL, url))
-                        .event(new HoverEvent(HoverEvent.Action.SHOW_TEXT, TextComponent.fromLegacyText(UsefulFunc.config("messages","Messages.Json.Message4", p, sum))))
+                        .event(new HoverEvent(HoverEvent.Action.SHOW_TEXT, TextComponent.fromLegacyText(MessageUtils.config("messages","Messages.Json.Message4", p, sum))))
                         .create());
                 p.sendMessage(msg2);
                 p.sendMessage(msgBorders);
@@ -58,7 +58,7 @@ public class QiWiModule
             }
         }
         else {
-            UsefulFunc.sendUsefulMSG(p, "Messages.Another.ActiveBill");
+            MessageUtils.sendUsefulMSG(p, "Messages.Another.ActiveBill");
             p.playSound(p.getLocation(), Sound.BLOCK_AMETHYST_BLOCK_STEP, 1.0f, 1.0f);
         }
     }
@@ -68,10 +68,10 @@ public class QiWiModule
         final int amount = response.getAmount().getValue().intValue() * MainConfig.getMain().getCFG().getInt("DraimDonate.Multiplication");
         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), MainConfig.getMain().getCFG().getString("DraimDonate.Command").replace("%player%", p.getName()).replace("%amount%", "" + amount));
         getClients().remove(p.getUniqueId());
-        UsefulFunc.sendUsefulMSG(p, "Messages.Status.Paid");
+        MessageUtils.sendUsefulMSG(p, "Messages.Status.Paid");
         DBWrite.addPlayerDonate(p, amount);
         SoundUtils.playSound(p, Sound.ENTITY_PLAYER_LEVELUP);
-        UsefulFunc.sendLog(ChatColor.LIGHT_PURPLE + p.getName() + " "+UsefulFunc.config("messages","Messages.Console.Message", p, amount));
+        MessageUtils.sendLog(ChatColor.LIGHT_PURPLE + p.getName() + " "+MessageUtils.config("messages","Messages.Console.Message", p, amount));
     }
 
     public static void checkBill(final Player p) {
@@ -82,17 +82,17 @@ public class QiWiModule
                 break;
             }
             case WAITING: {
-                UsefulFunc.sendUsefulMSG(p, "Messages.Status.Waiting");
+                MessageUtils.sendUsefulMSG(p, "Messages.Status.Waiting");
                 p.playSound(p.getLocation(), Sound.BLOCK_ANVIL_PLACE, 1.0f, 1.0f);
                 break;
             }
             case REJECTED: {
-                UsefulFunc.sendUsefulMSG(p, "Messages.Status.Rejected");
+                MessageUtils.sendUsefulMSG(p, "Messages.Status.Rejected");
                 p.playSound(p.getLocation(), Sound.BLOCK_ANVIL_PLACE, 1.0f, 1.0f);
                 break;
             }
             case EXPIRED: {
-                UsefulFunc.sendUsefulMSG(p, "Messages.Status.Expired");
+                MessageUtils.sendUsefulMSG(p, "Messages.Status.Expired");
                 p.playSound(p.getLocation(), Sound.BLOCK_ANVIL_FALL, 1.0f, 1.0f);
                 break;
             }

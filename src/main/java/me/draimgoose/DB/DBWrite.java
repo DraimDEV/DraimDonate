@@ -1,7 +1,7 @@
 package me.draimgoose.DB;
 
 import me.draimgoose.Config.DBCore;
-import me.draimgoose.Utils.UsefulFunc;
+import me.draimgoose.Utils.MessageUtils;
 import org.bukkit.entity.Player;
 
 import java.util.Date;
@@ -24,8 +24,8 @@ public class DBWrite
     public static void writeConf(final Player p, final int amount) {
         DBCore.getDB().getCFG().set("DraimDonate.Players." + p.getName() + ".AmountAll", DBCore.getDB().getCFG().getInt("DraimDonate.Players." + p.getName() + ".AmmountAll") + amount);
         final Date date = new Date();
-        DBCore.getDB().getCFG().createSection("DraimDonate.Players." + p.getName() + ".Donate." + UsefulFunc.getDate(date));
-        DBCore.getDB().getCFG().set("DraimDonate.Players." + p.getName() + ".Donate." + UsefulFunc.getDate(date), amount);
+        DBCore.getDB().getCFG().createSection("DraimDonate.Players." + p.getName() + ".Donate." + MessageUtils.getDate(date));
+        DBCore.getDB().getCFG().set("DraimDonate.Players." + p.getName() + ".Donate." + MessageUtils.getDate(date), amount);
         DBCore.getDB().saveCFG();
     }
 }
