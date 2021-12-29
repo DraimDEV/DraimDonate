@@ -48,7 +48,7 @@ public class MainCommands implements CommandExecutor {
                     }
                     return true;
                 }
-            } else if (args.length == 2) {
+            } else if (args.length != 2 || !isNumeric(args[1])) {
                 if (args[0].equalsIgnoreCase("pay")) {
                     QiWiModule.generateBill(p, Integer.parseInt(args[1]));
                     UsefulFunc.sendLog(UsefulFunc.config("messages","Messages.Console.PayLink", p, Integer.parseInt(args[1])));
@@ -70,5 +70,15 @@ public class MainCommands implements CommandExecutor {
         }
         }
         return false;
+    }
+
+    // Проверка на циферки, вместо буковок, а то бывают ебанаты, которые пишут /dn pay PIZDA,  а нужно /dn pay <сумма>
+    public static boolean isNumeric(final String str) {
+        try {
+            Integer.parseInt(str);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 }
