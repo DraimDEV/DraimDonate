@@ -3,12 +3,15 @@ package me.draimgoose.Commands;
 import me.draimgoose.Config.MainConfig;
 import me.draimgoose.Config.MessageConfig;
 import me.draimgoose.DraimDonate;
+import me.draimgoose.GUIs.AdminGUI;
 import me.draimgoose.Utils.*;
+import org.apache.logging.log4j.message.Message;
 import org.bukkit.Sound;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.persistence.PersistentDataType;
 
 public class MainCommands implements CommandExecutor {
     private DraimDonate pl;
@@ -73,6 +76,16 @@ public class MainCommands implements CommandExecutor {
                     SoundUtils.playSound(p, Sound.BLOCK_ANVIL_PLACE);
                     break;
                 }
+                case "admin": {
+                    if (p.hasPermission("draimdonate.admin")) {
+                        p.openInventory(new AdminGUI().getMenu());
+                        p.getPersistentDataContainer().set(pl.AdminGUI, PersistentDataType.STRING, AdminGUI.name);
+                        return true;
+                    }
+                    MessageUtils.sendMessage(DraimDonate.getConfigString("messages.no-permission"), sender);
+                    SoundUtils.playSound(p, Sound.BLOCK_ANVIL_PLACE);
+                    break;
+                }
                 default: {
                     p.sendMessage(MessageUtils.config("messages","Messages.Another.NoArg", p, 0));
                     for (final String s2 : MessageConfig.getMSG().getCFG().getStringList("Messages.Help")) {
@@ -96,9 +109,3 @@ public class MainCommands implements CommandExecutor {
         }
     }
 }
-        /* Перемещу эту залупу сюда, а то говорят можно потерять,
-           как создавать открытие меню, а ешё девственность. */
-
-//                    p.openInventory(new AdminGUI().getMenu());
-//                    p.getPersistentDataContainer().set(pl.AdminGUI, PersistentDataType.STRING, AdminGUI.name);
-//                    return true;
