@@ -1,6 +1,6 @@
 package me.draimgoose;
 
-import me.draimgoose.Commands.AdminGUICommand;
+import me.draimgoose.Commands.MainCommands;
 import me.draimgoose.Commands.TabComplete;
 import me.draimgoose.Config.DBCore;
 import me.draimgoose.Config.MainConfig;
@@ -48,32 +48,38 @@ public final class DraimDonate extends JavaPlugin
         return config.getStringList(path);
     }
 
+    @Override
     public void onEnable() {
         printASCII();
-        if (!this.getDataFolder().exists()) {
-            this.getDataFolder().mkdir();
-        }
-        DraimDonate.instance = this;
+        initCMDs();
+        instance = this;
+        this.saveDefaultConfig();
+        config = getConfig();
         DBCore.getDB().setUp();
         MainConfig.getMain().setUp();
         MessageConfig.getMSG().setUp();
         reloadToken();
-        this.getCommand("draimdonate").setExecutor(new QiWiCMDs());
     }
 
+    @Override
     public void onDisable() {
         this.getLogger().info("Плагин был отключен.");
         DBCore.getDB().saveCFG();
     }
 
+    public void reloadConfiguration() {
+        reloadConfig();
+        config = getConfig();
+    }
+
     public static void reloadToken() {
-        DraimDonate.QiWiT = MainConfig.getMain().getCFG().getString("DraimDonate.Token");
+        QiWiT = MainConfig.getMain().getCFG().getString("DraimDonate.Token");
     }
 
     // Команда "/draimdonate" выводит GUI-панель которая показывает админ функционал плагина
     // Такой как, доната, даты пополнения и т.д.
     public void initCMDs() {
-        getCommand("draimdonate").setExecutor(new AdminGUICommand(this));
+        getCommand("draimdonate").setExecutor(new MainCommands(this));
         getCommand("draimdonate").setTabCompleter(new TabComplete());
     }
 
