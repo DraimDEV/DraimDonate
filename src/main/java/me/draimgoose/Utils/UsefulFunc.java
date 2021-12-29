@@ -53,9 +53,6 @@ public class UsefulFunc
     public static void sendLog(String log) {
         Logger.getLogger("DraimDonate").info(color(log));
     }
-    public static void playSound(Player p, Sound sound) {
-        p.playSound(p.getLocation(), sound, 1.0F, 1.0F);
-    }
 
     public static String getDate(Date date) {
         String strDateFormat = "d-MM-yyyy_H-m-s";
