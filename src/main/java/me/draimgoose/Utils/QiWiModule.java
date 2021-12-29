@@ -8,7 +8,6 @@ import com.qiwi.billpayments.sdk.model.in.Customer;
 import com.qiwi.billpayments.sdk.model.out.BillResponse;
 import com.qiwi.billpayments.sdk.web.ApacheWebClient;
 import me.draimgoose.Config.MainConfig;
-import me.draimgoose.Config.MessageConfig;
 import me.draimgoose.DB.DBWrite;
 import me.draimgoose.DraimDonate;
 import net.md_5.bungee.api.chat.ClickEvent;
@@ -71,7 +70,7 @@ public class QiWiModule
         getClients().remove(p.getUniqueId());
         UsefulFunc.sendUsefulMSG(p, "Messages.Status.Paid");
         DBWrite.addPlayerDonate(p, amount);
-        UsefulFunc.playSound(p, Sound.ENTITY_PLAYER_LEVELUP);
+        SoundUtils.playSound(p, Sound.ENTITY_PLAYER_LEVELUP);
         UsefulFunc.sendLog(ChatColor.LIGHT_PURPLE + p.getName() + " "+UsefulFunc.config("messages","Messages.Console.Message", p, amount));
     }
 
