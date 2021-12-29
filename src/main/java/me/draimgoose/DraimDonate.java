@@ -48,10 +48,17 @@ public final class DraimDonate extends JavaPlugin
         return config.getStringList(path);
     }
 
+    // Ключи, чтобы открылись менюшки.
+    public void initKeys() {
+        buttonKey = new NamespacedKey(this, "adminGuiButton");
+        AdminGUI = new NamespacedKey(this, "adminGuiMenu");
+    }
+
     @Override
     public void onEnable() {
         printASCII();
         initCMDs();
+        initKeys();
         instance = this;
         this.saveDefaultConfig();
         config = getConfig();
