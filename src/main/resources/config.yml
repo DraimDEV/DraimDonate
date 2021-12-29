@@ -1,6 +1,6 @@
 messages:
   no-permission: "chat! &8(&c&l!&8) &7Insufficient permissions!" #chat! actionbar! title!
-  plugin-reloaded: "chat! &8(&6&l!&8) &7Plugin successfully reloaded!"
+  plugin-reload: "chat! &8(&6&l!&8) &7Плагин успешно перезагружен!"
 
 menus:
   admin-gui:
