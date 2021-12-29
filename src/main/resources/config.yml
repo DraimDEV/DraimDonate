@@ -21,4 +21,3 @@ menus:
         type: EXIT
         slots: [ 10 ]
         glowing: false
-        cmd: -1
