@@ -3,17 +3,12 @@ package me.draimgoose.Commands;
 import me.draimgoose.Config.MainConfig;
 import me.draimgoose.Config.MessageConfig;
 import me.draimgoose.DraimDonate;
-import me.draimgoose.GUIs.AdminGUI;
-import me.draimgoose.Utils.MessageUtils;
-import me.draimgoose.Utils.QiWiModule;
-import me.draimgoose.Utils.UsefulFunc;
+import me.draimgoose.Utils.*;
 import org.bukkit.Sound;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.persistence.PersistentDataType;
-import org.jetbrains.annotations.NotNull;
 
 public class MainCommands implements CommandExecutor {
     private DraimDonate pl;
@@ -40,11 +35,11 @@ public class MainCommands implements CommandExecutor {
                         DraimDonate.reloadToken();
                         MessageUtils.sendMessage(DraimDonate.getConfigString("messages.plugin-reload"), sender);
                         UsefulFunc.sendLog(DraimDonate.getConfigString("messages.plugin-reload"));
-                        UsefulFunc.playSound(p, Sound.ENTITY_EXPERIENCE_ORB_PICKUP);
+                        SoundUtils.playSound(p, Sound.ENTITY_EXPERIENCE_ORB_PICKUP);
                         break;
                     }
                     MessageUtils.sendMessage(DraimDonate.getConfigString("messages.no-permission"), sender);
-                    UsefulFunc.playSound(p, Sound.BLOCK_ANVIL_PLACE);
+                    SoundUtils.playSound(p, Sound.BLOCK_ANVIL_PLACE);
                     break;
                 }
                 case "pay": {
@@ -54,7 +49,7 @@ public class MainCommands implements CommandExecutor {
                     }
                     QiWiModule.generateBill(p, Integer.parseInt(args[1]));
                     UsefulFunc.sendLog(UsefulFunc.config("messages","Messages.Console.PayLink", p, Integer.parseInt(args[1])));
-                    UsefulFunc.playSound(p, Sound.ENTITY_PLAYER_LEVELUP);
+                    SoundUtils.playSound(p, Sound.ENTITY_PLAYER_LEVELUP);
                     break;
                 }
                 case "check": {
@@ -63,7 +58,7 @@ public class MainCommands implements CommandExecutor {
                         break;
                     }
                     UsefulFunc.sendUsefulMSG(p, "Messages.Another.NoBill");
-                    UsefulFunc.playSound(p, Sound.BLOCK_ANVIL_PLACE);
+                    SoundUtils.playSound(p, Sound.BLOCK_ANVIL_PLACE);
                     break;
                 }
                 case "reject": {
@@ -71,11 +66,11 @@ public class MainCommands implements CommandExecutor {
                         QiWiModule.getClients().remove(p.getUniqueId());
                         MessageUtils.sendMessage(DraimDonate.getConfigString("messages.bill.reject"), sender);
                         UsefulFunc.sendLog(UsefulFunc.config("messages", "Messages.Console.RejectLink", p, 0));
-                        UsefulFunc.playSound(p, Sound.ENTITY_EXPERIENCE_ORB_PICKUP);
+                        SoundUtils.playSound(p, Sound.ENTITY_EXPERIENCE_ORB_PICKUP);
                         break;
                     }
                     MessageUtils.sendMessage(DraimDonate.getConfigString("messages.bill.no-bill"), sender);
-                    UsefulFunc.playSound(p, Sound.BLOCK_ANVIL_PLACE);
+                    SoundUtils.playSound(p, Sound.BLOCK_ANVIL_PLACE);
                     break;
                 }
                 default: {
@@ -83,7 +78,7 @@ public class MainCommands implements CommandExecutor {
                     for (final String s2 : MessageConfig.getMSG().getCFG().getStringList("Messages.Help")) {
                         p.sendMessage(UsefulFunc.color(s2));
                     }
-                    UsefulFunc.playSound(p, Sound.BLOCK_ANVIL_PLACE);
+                    SoundUtils.playSound(p, Sound.BLOCK_ANVIL_PLACE);
                     break;
                 }
             }
