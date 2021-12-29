@@ -1,0 +1,20 @@
+messages:
+  no-permission: "chat! &8(&c&l!&8) &7Insufficient permissions!" #chat! actionbar! title!
+  plugin-reloaded: "chat! &8(&6&l!&8) &7Plugin successfully reloaded!"
+
+menus:
+  admin-gui:
+    title: "<$#0C9C29>DraimDonate<$#0ED42C>"
+    size: 45
+    buttons:
+      first:
+        material: "BEACON"
+        name: "Тестовая кнопка"
+        lore:
+          - ""
+          - "&6Нажмите&F, чтобы обосраться."
+          - ""
+        type: EXIT
+        slots: [ 10 ]
+        glowing: false
+        cmd: -1
