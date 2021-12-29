@@ -1,5 +1,6 @@
 package me.draimgoose.Commands;
 
+import me.draimgoose.Config.MainConfig;
 import me.draimgoose.Config.MessageConfig;
 import me.draimgoose.DraimDonate;
 import me.draimgoose.GUIs.AdminGUI;
@@ -31,43 +32,41 @@ public class MainCommands implements CommandExecutor {
                     p.sendMessage(UsefulFunc.color(s));
                 }
                 return false;
-//                    p.openInventory(new AdminGUI().getMenu());
-//                    p.getPersistentDataContainer().set(pl.AdminGUI, PersistentDataType.STRING, AdminGUI.name);
-//                    return true;
-            } else if (args.length == 1) {
-                if (args[0].equalsIgnoreCase("reload")) {
+            } final String lowerCase = args[0].toLowerCase();
+            switch (lowerCase) {
+                case "reload": {
                     if (p.hasPermission("draimdonate.reload")) {
-                        pl.getInstance().reloadConfig();
-                        pl.getInstance().onDisable();
-                        pl.getInstance().onEnable();
-                        MessageUtils.sendMessage(pl.getConfigString("messages.plugin-reload"), sender);
+                        MainConfig.getMain().reloadCFG();
+                        DraimDonate.reloadToken();
+                        MessageUtils.sendMessage(DraimDonate.getConfigString("messages.plugin-reload"), sender);
+                        UsefulFunc.sendLog(DraimDonate.getConfigString("messages.plugin-reload"));
                         UsefulFunc.playSound(p, Sound.ENTITY_EXPERIENCE_ORB_PICKUP);
-                    } else {
-                        MessageUtils.sendMessage(pl.getConfigString("messages.no-permission"), sender);
-                        UsefulFunc.playSound(p, Sound.BLOCK_ANVIL_PLACE);
+                        break;
                     }
-                    return true;
+                    MessageUtils.sendMessage(DraimDonate.getConfigString("messages.no-permission"), sender);
+                    UsefulFunc.playSound(p, Sound.BLOCK_ANVIL_PLACE);
+                    break;
                 }
-            } else if (args.length != 2 || !isNumeric(args[1])) {
-                if (args[0].equalsIgnoreCase("pay")) {
+                case "pay": {
+                    if (args.length != 2 || !isNumeric(args[1])) {
+                        MessageUtils.sendMessage(DraimDonate.getConfigString("messages.arg-error"), sender);
+                        return true;
+                    }
                     QiWiModule.generateBill(p, Integer.parseInt(args[1]));
                     UsefulFunc.sendLog(UsefulFunc.config("messages","Messages.Console.PayLink", p, Integer.parseInt(args[1])));
                     UsefulFunc.playSound(p, Sound.ENTITY_PLAYER_LEVELUP);
-                } else {
-                    UsefulFunc.sendUsefulMSG(p, "Messages.Another.ArgError");
-                    UsefulFunc.playSound(p, Sound.BLOCK_ANVIL_PLACE);
+                    break;
                 }
-                return true;
-            } else if (args.length == 3) {
-                if (args[0].equalsIgnoreCase("check")) {
-                    if (QiWiModule.getClients().containsKey(p.getUniqueId())) {
+                case "check": {
+                    if  (QiWiModule.getClients().containsKey(p.getUniqueId())) {
                         QiWiModule.checkBill(p);
-                    } else {
-                        UsefulFunc.sendUsefulMSG(p, "Messages.Another.ArgError");
-                        UsefulFunc.playSound(p, Sound.BLOCK_ANVIL_PLACE);
+                        break;
                     }
+                    UsefulFunc.sendUsefulMSG(p, "Messages.Another.NoBill");
+                    UsefulFunc.playSound(p, Sound.BLOCK_ANVIL_PLACE);
+                    break;
+                }
             }
-        }
         }
         return false;
     }
@@ -82,3 +81,9 @@ public class MainCommands implements CommandExecutor {
         }
     }
 }
+        /* Перемещу эту залупу сюда, а то говорят можно потерять,
+           как создавать открытие меню, а ешё девственность. */
+
+//                    p.openInventory(new AdminGUI().getMenu());
+//                    p.getPersistentDataContainer().set(pl.AdminGUI, PersistentDataType.STRING, AdminGUI.name);
+//                    return true;
