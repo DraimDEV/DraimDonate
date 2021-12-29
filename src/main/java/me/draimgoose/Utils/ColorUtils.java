@@ -154,6 +154,10 @@ public class ColorUtils {
     public static String colorize(String s){
         return ChatColor.translateAlternateColorCodes('&', s);
     }
+// Реплейс цветов в консоли
+    public static String color(String mes) {
+        return mes.replace("&", "§");
+    }
 
 }
 
