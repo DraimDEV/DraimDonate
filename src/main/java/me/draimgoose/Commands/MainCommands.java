@@ -9,11 +9,11 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.persistence.PersistentDataType;
 
-public class AdminGUICommand implements CommandExecutor
+public class MainCommands implements CommandExecutor
 {
     private DraimDonate pl;
 
-    public AdminGUICommand(DraimDonate pl)
+    public MainCommands(DraimDonate pl)
     {
         super();
         this.pl = pl;
@@ -22,7 +22,7 @@ public class AdminGUICommand implements CommandExecutor
     @Override
     public boolean onCommand(CommandSender sender, Command command,String label, String[] args)
     {
-        if (command.getName().equals("dn"))
+        if (command.getName().equals("draimdonate"))
         {
             if (args.length == 0)
             {
