@@ -66,6 +66,26 @@ public class MainCommands implements CommandExecutor {
                     UsefulFunc.playSound(p, Sound.BLOCK_ANVIL_PLACE);
                     break;
                 }
+                case "reject": {
+                    if (QiWiModule.getClients().containsKey(p.getUniqueId())) {
+                        QiWiModule.getClients().remove(p.getUniqueId());
+                        MessageUtils.sendMessage(DraimDonate.getConfigString("messages.bill.reject"), sender);
+                        UsefulFunc.sendLog(UsefulFunc.config("messages", "Messages.Console.RejectLink", p, 0));
+                        UsefulFunc.playSound(p, Sound.ENTITY_EXPERIENCE_ORB_PICKUP);
+                        break;
+                    }
+                    MessageUtils.sendMessage(DraimDonate.getConfigString("messages.bill.no-bill"), sender);
+                    UsefulFunc.playSound(p, Sound.BLOCK_ANVIL_PLACE);
+                    break;
+                }
+                default: {
+                    p.sendMessage(UsefulFunc.config("messages","Messages.Another.NoArg", p, 0));
+                    for (final String s2 : MessageConfig.getMSG().getCFG().getStringList("Messages.Help")) {
+                        p.sendMessage(UsefulFunc.color(s2));
+                    }
+                    UsefulFunc.playSound(p, Sound.BLOCK_ANVIL_PLACE);
+                    break;
+                }
             }
         }
         return false;
