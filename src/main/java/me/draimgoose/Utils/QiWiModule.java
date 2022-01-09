@@ -42,13 +42,13 @@ public class QiWiModule
                 final BillResponse response = QiWiModule.client.createBill(billInfo);
                 QiWiModule.clients.put(p.getUniqueId(), response.getBillId());
                 String url = response.getPayUrl();
-                String msg = MessageUtils.config("msg","Messages.Json.Message", p, sum);
-                String msg2 = MessageUtils.config("msg","Messages.Json.Message2", p, sum);
-                String msgBorders = MessageUtils.config("msg","Messages.Json.Message3", p, sum);
+                String msg = MessageUtils.config("config","Messages.Json.msg", p, sum);
+                String msg2 = MessageUtils.config("config","Messages.Json.msg2", p, sum);
+                String msgBorders = MessageUtils.config("config","Messages.Json.msg3", p, sum);
                 p.sendMessage(msgBorders);
                 p.spigot().sendMessage(new ComponentBuilder(msg)
                         .event(new ClickEvent(ClickEvent.Action.OPEN_URL, url))
-                        .event(new HoverEvent(HoverEvent.Action.SHOW_TEXT, TextComponent.fromLegacyText(MessageUtils.config("msg","Messages.Json.Message4", p, sum))))
+                        .event(new HoverEvent(HoverEvent.Action.SHOW_TEXT, TextComponent.fromLegacyText(MessageUtils.config("config","Messages.Json.msg4", p, sum))))
                         .create());
                 p.sendMessage(msg2);
                 p.sendMessage(msgBorders);
@@ -71,7 +71,7 @@ public class QiWiModule
         MessageUtils.sendUsefulMSG(p, "Messages.Status.Paid");
         DBWrite.addPlayerDonate(p, amount);
         SoundUtils.playSound(p, Sound.ENTITY_PLAYER_LEVELUP);
-        MessageUtils.sendLog(ChatColor.LIGHT_PURPLE + p.getName() + " "+MessageUtils.config("messages","Messages.Console.Message", p, amount));
+        MessageUtils.sendLog(ChatColor.LIGHT_PURPLE + p.getName() + " "+MessageUtils.config("config","Messages.Console.Message", p, amount));
     }
 
     public static void checkBill(final Player p) {

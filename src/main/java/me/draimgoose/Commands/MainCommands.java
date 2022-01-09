@@ -36,22 +36,22 @@ public class MainCommands implements CommandExecutor {
                     if (p.hasPermission("draimdonate.reload")) {
                         MainConfig.getMain().reloadCFG();
                         DraimDonate.reloadToken();
-                        MessageUtils.sendMessage(DraimDonate.getConfigString("messages.plugin-reload"), sender);
-                        MessageUtils.sendLog(DraimDonate.getConfigString("messages.plugin-reload"));
+                        MessageUtils.sendMessage(DraimDonate.getConfigString("Messages.Another.Plugin-Reload"), sender);
+                        MessageUtils.sendLog(DraimDonate.getConfigString("Messages.Another.Plugin-Reload"));
                         SoundUtils.playSound(p, Sound.ENTITY_EXPERIENCE_ORB_PICKUP);
                         break;
                     }
-                    MessageUtils.sendMessage(DraimDonate.getConfigString("messages.no-permission"), sender);
+                    MessageUtils.sendMessage(DraimDonate.getConfigString("Messages.Another.No-Permission"), sender);
                     SoundUtils.playSound(p, Sound.BLOCK_ANVIL_PLACE);
                     break;
                 }
                 case "pay": {
                     if (args.length != 2 || !isNumeric(args[1])) {
-                        MessageUtils.sendMessage(DraimDonate.getConfigString("messages.arg-error"), sender);
+                        MessageUtils.sendMessage(DraimDonate.getConfigString("Messages.Another.Arg-Error"), sender);
                         return true;
                     }
                     QiWiModule.generateBill(p, Integer.parseInt(args[1]));
-                    MessageUtils.sendLog(MessageUtils.config("messages","Messages.Console.PayLink", p, Integer.parseInt(args[1])));
+                    MessageUtils.sendLog(MessageUtils.config("config","Messages.Console.PayLink", p, Integer.parseInt(args[1])));
                     SoundUtils.playSound(p, Sound.ENTITY_PLAYER_LEVELUP);
                     break;
                 }
@@ -67,12 +67,12 @@ public class MainCommands implements CommandExecutor {
                 case "reject": {
                     if (QiWiModule.getClients().containsKey(p.getUniqueId())) {
                         QiWiModule.getClients().remove(p.getUniqueId());
-                        MessageUtils.sendMessage(DraimDonate.getConfigString("messages.bill.reject"), sender);
-                        MessageUtils.sendLog(MessageUtils.config("messages", "Messages.Console.RejectLink", p, 0));
+                        MessageUtils.sendMessage(DraimDonate.getConfigString("Messages.Bill.Reject"), sender);
+                        MessageUtils.sendLog(MessageUtils.config("config", "Messages.Console.RejectLink", p, 0));
                         SoundUtils.playSound(p, Sound.ENTITY_EXPERIENCE_ORB_PICKUP);
                         break;
                     }
-                    MessageUtils.sendMessage(DraimDonate.getConfigString("messages.bill.no-bill"), sender);
+                    MessageUtils.sendMessage(DraimDonate.getConfigString("Messages.Bill.No-Bill"), sender);
                     SoundUtils.playSound(p, Sound.BLOCK_ANVIL_PLACE);
                     break;
                 }
@@ -82,12 +82,12 @@ public class MainCommands implements CommandExecutor {
                         p.getPersistentDataContainer().set(pl.AdminGUI, PersistentDataType.STRING, AdminGUI.name);
                         return true;
                     }
-                    MessageUtils.sendMessage(DraimDonate.getConfigString("messages.no-permission"), sender);
+                    MessageUtils.sendMessage(DraimDonate.getConfigString("Messages.Another.No-Permission"), sender);
                     SoundUtils.playSound(p, Sound.BLOCK_ANVIL_PLACE);
                     break;
                 }
                 default: {
-                    p.sendMessage(MessageUtils.config("messages","Messages.Another.NoArg", p, 0));
+                    p.sendMessage(MessageUtils.config("config","Messages.Another.NoArg", p, 0));
                     for (final String s2 : MessageConfig.getMSG().getCFG().getStringList("Messages.Help")) {
                         p.sendMessage(ColorUtils.color(s2));
                     }
