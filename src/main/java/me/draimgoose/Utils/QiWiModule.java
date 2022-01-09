@@ -42,13 +42,13 @@ public class QiWiModule
                 final BillResponse response = QiWiModule.client.createBill(billInfo);
                 QiWiModule.clients.put(p.getUniqueId(), response.getBillId());
                 String url = response.getPayUrl();
-                String msg = MessageUtils.config("messages","Messages.Json.Message", p, sum);
-                String msg2 = MessageUtils.config("messages","Messages.Json.Message2", p, sum);
-                String msgBorders = MessageUtils.config("messages","Messages.Json.Message3", p, sum);
+                String msg = MessageUtils.config("msg","Messages.Json.Message", p, sum);
+                String msg2 = MessageUtils.config("msg","Messages.Json.Message2", p, sum);
+                String msgBorders = MessageUtils.config("msg","Messages.Json.Message3", p, sum);
                 p.sendMessage(msgBorders);
                 p.spigot().sendMessage(new ComponentBuilder(msg)
                         .event(new ClickEvent(ClickEvent.Action.OPEN_URL, url))
-                        .event(new HoverEvent(HoverEvent.Action.SHOW_TEXT, TextComponent.fromLegacyText(MessageUtils.config("messages","Messages.Json.Message4", p, sum))))
+                        .event(new HoverEvent(HoverEvent.Action.SHOW_TEXT, TextComponent.fromLegacyText(MessageUtils.config("msg","Messages.Json.Message4", p, sum))))
                         .create());
                 p.sendMessage(msg2);
                 p.sendMessage(msgBorders);
