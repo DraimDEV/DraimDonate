@@ -17,11 +17,11 @@ public class MessageConfig
     private FileConfiguration fc;
     public void setUp() {
         if(this.f == null) {
-            this.f = new File(DraimDonate.getInstance().getDataFolder(), "msg.yml");
+            this.f = new File(DraimDonate.getInstance().getDataFolder(), "config.yml");
         }
         this.fc = YamlConfiguration.loadConfiguration(this.f);
         if(!this.f.exists()) {
-            try (final InputStream in = DraimDonate.getInstance().getResource("msg.yml")) {
+            try (final InputStream in = DraimDonate.getInstance().getResource("config.yml")) {
                 Files.copy(in, this.f.toPath());
                 this.fc = YamlConfiguration.loadConfiguration(this.f);
                 Bukkit.getServer().getConsoleSender().sendMessage("[DraimDonate] Файл локализации успешно создан.");
