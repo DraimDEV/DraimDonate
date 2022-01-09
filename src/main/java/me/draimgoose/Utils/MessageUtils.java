@@ -63,7 +63,7 @@ public class MessageUtils {
     }
 
     public static String config(String db, String path, Player p, int amount) {
-        if (db.equals("msg")) {
+        if (db.equals("config")) {
             String mes = MessageConfig.getMSG().getCFG().getString(path);
             String mes1 = CFGOperator(mes, p, amount);
             return mes1;
@@ -75,11 +75,6 @@ public class MessageUtils {
         }
         if (db.equals("db")) {
             String mes = DBCore.getDB().getCFG().getString(path);
-            String mes1 = CFGOperator(mes, p, amount);
-            return mes1;
-        }
-        if (db.equals("config")) {
-            String mes = MessageConfig.getMSG().getCFG().getString(path);
             String mes1 = CFGOperator(mes, p, amount);
             return mes1;
         }
