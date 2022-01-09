@@ -78,6 +78,11 @@ public class MessageUtils {
             String mes1 = CFGOperator(mes, p, amount);
             return mes1;
         }
+        if (db.equals("config")) {
+            String mes = MessageConfig.getMSG().getCFG().getString(path);
+            String mes1 = CFGOperator(mes, p, amount);
+            return mes1;
+        }
         else return "<не найдено сообщения, обратитесь к администрации>";
     }
 
