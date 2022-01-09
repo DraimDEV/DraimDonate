@@ -78,7 +78,7 @@ public class MessageUtils {
             String mes1 = CFGOperator(mes, p, amount);
             return mes1;
         }
-        else return "<no existing string file selected>";
+        else return "<не найдено сообщения, обратитесь к администрации>";
     }
 
     public static String getDate(Date date) {
