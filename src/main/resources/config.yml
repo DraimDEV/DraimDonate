@@ -9,7 +9,7 @@ messages:
 menus:
   admin-gui:
     title: "<$#0C9C29>DraimDonate<$#0ED42C>"
-    size: 26
+    size: 27
     buttons:
       first:
         material: "BEACON"
