@@ -63,17 +63,17 @@ public class MessageUtils {
     }
 
     public static String config(String db, String path, Player p, int amount) {
-        if (db.equals("messages")) {
+        if (db.equals("msg")) {
             String mes = MessageConfig.getMSG().getCFG().getString(path);
             String mes1 = CFGOperator(mes, p, amount);
             return mes1;
         }
-        if (db.equals("qiwi")) {
+        if (db.equals("QiWiCFG")) {
             String mes = MainConfig.getMain().getCFG().getString(path);
             String mes1 = CFGOperator(mes, p, amount);
             return mes1;
         }
-        if (db.equals("database")) {
+        if (db.equals("db")) {
             String mes = DBCore.getDB().getCFG().getString(path);
             String mes1 = CFGOperator(mes, p, amount);
             return mes1;
