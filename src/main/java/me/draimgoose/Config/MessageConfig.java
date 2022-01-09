@@ -33,7 +33,7 @@ public class MessageConfig
     }
 
     public void reloadCFG() {
-        this.f = new File(DraimDonate.getInstance().getDataFolder(), "msg.yml");
+        this.f = new File(DraimDonate.getInstance().getDataFolder(), "config.yml");
         this.fc = YamlConfiguration.loadConfiguration(this.f);
     }
 
