@@ -1,6 +1,7 @@
 DraimDonate:
 
-  Token: eyJ2ZXJzaW9uIjoiUDJQIiwiZGF0YSI6eyJwYXlpbl9tZXJjaGFudF9zaXRlX3VpZCI6InB1MmVuYy0wMCIsInVzZXJfaWQiOiIzNzEyODg3MDU5MCIsInNlY3JldCI6IjE5YjA5M2Q4ODFiZWJlOTRkOWJkOTUwMWQxOTI5MDAzY2I3YzAyNDQ5MjkxOTlkYWNiMWIxNTYxNTM5Y2IyZDMifX0=
+  # Сюда требуется поместить ваш Токен от Qiwi P2P
+  Token:
 
   # Умножение покупки, например если заплатил 100 руб, при "Multiplication: 3", даст 100*3 = 300
   Multiplication: 1
@@ -16,7 +17,7 @@ DraimDonate:
 
   # Параметры требуемые для формирования оплаты
   #Телефон вводить без "8" и "+": 79987894554
-  Phone: "37128870590"
-  Email: "danilaorlov4@gmail.com"
+  Phone: ""
+  Email: ""
   # Валюта для приёма платежей
   Currency: "RUB"
