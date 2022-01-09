@@ -7,7 +7,7 @@ author: DraimGooSe
 commands:
   draimdonate:
     description: Основная команда.
-    aliases: [dn, donate, qiwi, dshop]
+    aliases: [dn, donate, qiwi]
 
 permissions:
   draimdonate.reload:
