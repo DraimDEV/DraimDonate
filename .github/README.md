@@ -1,6 +1,8 @@
 # <p align="center">DraimDonate</p>
 **Donations without leaving Minecraft**
 
+![Total Lines](https://img.shields.io/tokei/lines/github/DraimDEV/DraimDonate?style=plastic)
+
 ### Discord Support
 Your support [here](https://discord.gg/TqERqrrBjE)<br>
 The fastest way to contact author of plugin of course - Discord
