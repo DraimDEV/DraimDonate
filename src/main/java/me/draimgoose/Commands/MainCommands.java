@@ -16,6 +16,11 @@ import org.bukkit.persistence.PersistentDataType;
 public class MainCommands implements CommandExecutor {
     private DraimDonate pl;
 
+    /**
+     * Instantiates a new Main commands.
+     *
+     * @param pl the plugin
+     */
     public MainCommands(DraimDonate pl) {
         super();
         this.pl = pl;
@@ -99,7 +104,13 @@ public class MainCommands implements CommandExecutor {
         return false;
     }
 
-    // Проверка на циферки, вместо буковок, а то бывают ебанаты, которые пишут /dn pay PIZDA,  а нужно /dn pay <сумма>
+    /**
+     * Проверка на циферки, вместо буковок, а то бывают ебанаты, которые пишут /dn pay PIZDA,  а нужно /dn pay <сумма>
+     * Is numeric boolean.
+     *
+     * @param str the string
+     * @return the boolean
+     */
     public static boolean isNumeric(final String str) {
         try {
             Integer.parseInt(str);

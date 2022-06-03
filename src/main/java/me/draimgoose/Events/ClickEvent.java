@@ -10,6 +10,11 @@ import org.bukkit.persistence.PersistentDataType;
 
 public class ClickEvent implements Listener {
 
+    /**
+     * On click.
+     *
+     * @param e the event
+     */
     @EventHandler(ignoreCancelled = true)
     public void onClick(InventoryClickEvent e) {
 

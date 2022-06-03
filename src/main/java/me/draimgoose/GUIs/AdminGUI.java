@@ -17,8 +17,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AdminGUI {
+
+    /**
+     * The constant name.
+     */
     public static final String name = "AdminGUI";
 
+    /**
+     * Gets menu.
+     *
+     * @return the menu
+     */
     public Inventory getMenu() {
         String guiName = ColorUtils.colorMessage(DraimDonate.getConfigString("menus.admin-gui.title"));
         int guiSize = DraimDonate.getConfigInt("menus.admin-gui.size");
@@ -33,6 +42,12 @@ public class AdminGUI {
         return adminGUI;
     }
 
+    /**
+     * Gets item.
+     *
+     * @param name the name
+     * @return the item
+     */
     public ItemStack getItem(String name) {
         ItemStack button;
         String materialString = DraimDonate.getConfigString("menus.admin-gui.buttons."+name+".material");

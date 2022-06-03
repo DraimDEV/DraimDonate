@@ -6,8 +6,14 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 
+
 public class DragEvent implements Listener {
 
+    /**
+     * On drag.
+     *
+     * @param e the event
+     */
     @EventHandler(ignoreCancelled = true)
     public void onDrag(InventoryClickEvent e) {
         if (e.getWhoClicked().getGameMode().equals(GameMode.CREATIVE)) {

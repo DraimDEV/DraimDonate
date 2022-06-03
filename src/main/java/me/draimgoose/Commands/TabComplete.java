@@ -9,6 +9,9 @@ import java.util.List;
 
 public class TabComplete implements TabCompleter
 {
+    /**
+     * The Completions.
+     */
     List<String> completions = new ArrayList<>();
 
     @Override

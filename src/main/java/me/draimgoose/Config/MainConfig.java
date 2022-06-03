@@ -15,6 +15,10 @@ public class MainConfig
     private static MainConfig mc;
     private File f;
     private FileConfiguration fc;
+
+    /**
+     * Sets up.
+     */
     public void setUp() {
         if (this.f == null) {
             this.f = new File(DraimDonate.getInstance().getDataFolder(), "QiWiCFG.yml");
@@ -31,10 +35,20 @@ public class MainConfig
             }
         }
     }
+
+    /**
+     * Reload config.
+     */
     public void reloadCFG() {
         this.f = new File(DraimDonate.getInstance().getDataFolder(), "QiWiCFG.yml");
         this.fc = YamlConfiguration.loadConfiguration(this.f);
     }
+
+    /**
+     * Gets config.
+     *
+     * @return the config.
+     */
     public FileConfiguration getCFG() {
         if(this.fc == null) {
             this.reloadCFG();
@@ -42,6 +56,9 @@ public class MainConfig
         return this.fc;
     }
 
+    /**
+     * Save config.
+     */
     public void saveCFG() {
         try {
             this.getCFG().save(this.f);
@@ -51,6 +68,11 @@ public class MainConfig
         }
     }
 
+    /**
+     * Gets main.
+     *
+     * @return the main
+     */
     public static MainConfig getMain() {
         return MainConfig.mc;
     }

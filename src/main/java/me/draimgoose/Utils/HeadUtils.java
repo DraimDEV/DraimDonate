@@ -39,6 +39,8 @@ public class HeadUtils {
 
     /**
      * Creates a player skull, should work in both legacy and new Bukkit APIs.
+     *
+     * @return the item stack
      */
     public static ItemStack createSkull() {
         checkLegacy();

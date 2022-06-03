@@ -8,6 +8,11 @@ import org.bukkit.persistence.PersistentDataType;
 
 public class CloseEvent implements Listener {
 
+    /**
+     * On close.
+     *
+     * @param e the event
+     */
     @EventHandler
     public void onClose(InventoryCloseEvent e) {
         if (e.getPlayer().getPersistentDataContainer().has(DraimDonate.AdminGUI, PersistentDataType.STRING)) {

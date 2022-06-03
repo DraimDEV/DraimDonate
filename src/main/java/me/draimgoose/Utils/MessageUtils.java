@@ -17,7 +17,16 @@ import java.util.logging.Logger;
 
 import static me.draimgoose.Utils.ColorUtils.color;
 
+/**
+ * The type Message utils.
+ */
 public class MessageUtils {
+    /**
+     * Send message.
+     *
+     * @param msg the message
+     * @param p   the player
+     */
     public static void sendMessage(String msg, CommandSender p) {
         if (!(p instanceof Player player)) {
             p.sendMessage(ColorUtils.colorMessage(msg
@@ -41,27 +50,64 @@ public class MessageUtils {
         }
     }
 
-    // Префикс лога в консоли.
+    /**
+     * Send log.
+     *
+     * @param log the log
+     */
+// Префикс лога в консоли.
     public static void sendLog(String log) {
         Logger.getLogger("DraimDonate").info(color(log));
     }
+
+    /**
+     * Send useful message.
+     *
+     * @param p    the player
+     * @param path the path
+     */
     public static void sendUsefulMSG(Player p, String path) {
         String messages = MessageConfig.getMSG().getCFG().getString(path);
         p.sendMessage(color(messages));
     }
 
-    public static String CFGOperator(String mes, Player p, int ammout) {
-        String mes1 = placeholder(mes, p, ammout);
+    /**
+     * Config operator string.
+     *
+     * @param mes    the message
+     * @param p      the player
+     * @param amount the amount
+     * @return the string
+     */
+    public static String CFGOperator(String mes, Player p, int amount) {
+        String mes1 = placeholder(mes, p, amount);
         String mes2 = color(mes1);
         return mes2;
     }
 
+    /**
+     * Placeholder string.
+     *
+     * @param mes    the message
+     * @param p      the player
+     * @param amount the amount
+     * @return the string
+     */
     public static String placeholder(String mes, Player p, int amount) {
         String mes1 = mes.replace("%player%", p.getName());
         String mes2 = mes1.replace("%amount%", String.valueOf(amount));
         return mes2;
     }
 
+    /**
+     * Config string.
+     *
+     * @param db     the database
+     * @param path   the path
+     * @param p      the player
+     * @param amount the amount
+     * @return the string
+     */
     public static String config(String db, String path, Player p, int amount) {
         if (db.equals("config")) {
             String mes = MessageConfig.getMSG().getCFG().getString(path);
@@ -81,6 +127,12 @@ public class MessageUtils {
         else return "<не найдено сообщения, обратитесь к администрации>";
     }
 
+    /**
+     * Gets date.
+     *
+     * @param date the date
+     * @return the date
+     */
     public static String getDate(Date date) {
         String strDateFormat = "d-MM-yyyy_H-m-s";
         DateFormat dateFormat = new SimpleDateFormat(strDateFormat);
@@ -88,23 +140,43 @@ public class MessageUtils {
         return formattedDate;
     }
 
-    // Метод отправки сообщения в ActionBar
+    /**
+     * Метод отправки сообщения в ActionBar
+     *
+     * @param msg the message
+     * @param p   the player
+     */
     public static void sendActionBarMSG(String msg, Player p) {
         BaseComponent component = ComponentSerializer.parse(ColorUtils.colorBungee(msg))[0];
         p.spigot().sendMessage(ChatMessageType.ACTION_BAR, component);
     }
 
-    // Метод отправки сообщения в Title
+    /**
+     * Метод отправки сообщения в Title
+     *
+     * @param msg the message
+     * @param p   the player
+     */
     public static void sendTitleMSG(String msg, Player p) {
         p.sendTitle(ColorUtils.colorMessage(msg), "", 20, 80, 20);
     }
 
-    // Метод отправки сообщения в Chat
+    /**
+     * Метод отправки сообщения в Chat
+     *
+     * @param msg the message
+     * @param p   the player
+     */
     public static void sendChatMSG(String msg, Player p) {
         p.sendMessage(ColorUtils.colorMessage(msg));
     }
 
-    // Метод проверки сообщения
+    /**
+     * Метод проверки сообщения
+     *
+     * @param msg the message
+     * @return the string
+     */
     public static String toCheckMSG(String msg) {
         return ChatColor.stripColor(msg).toLowerCase();
     }

@@ -15,6 +15,10 @@ public class MessageConfig
     private static MessageConfig mc;
     private File f;
     private FileConfiguration fc;
+
+    /**
+     * Sets up.
+     */
     public void setUp() {
         if(this.f == null) {
             this.f = new File(DraimDonate.getInstance().getDataFolder(), "config.yml");
@@ -32,11 +36,19 @@ public class MessageConfig
         }
     }
 
+    /**
+     * Reload config.
+     */
     public void reloadCFG() {
         this.f = new File(DraimDonate.getInstance().getDataFolder(), "config.yml");
         this.fc = YamlConfiguration.loadConfiguration(this.f);
     }
 
+    /**
+     * Gets config.
+     *
+     * @return the config
+     */
     public FileConfiguration getCFG() {
         if (this.fc == null) {
             this.reloadCFG();
@@ -44,6 +56,9 @@ public class MessageConfig
         return this.fc;
     }
 
+    /**
+     * Save config.
+     */
     public void saveCFG() {
         try {
             this.getCFG().save(this.f);
@@ -53,6 +68,11 @@ public class MessageConfig
         }
     }
 
+    /**
+     * Gets message.
+     *
+     * @return the message
+     */
     public static MessageConfig getMSG() {
         return MessageConfig.mc;
     }

@@ -16,6 +16,9 @@ public class DBCore
     private File f;
     private FileConfiguration fc;
 
+    /**
+     * Sets up.
+     */
     public void setUp() {
         if (this.f == null) {
             this.f = new File(DraimDonate.getInstance().getDataFolder(), "db.yml");
@@ -33,11 +36,19 @@ public class DBCore
         }
     }
 
+    /**
+     * Reload config.
+     */
     public void reloadCFG() {
         this.f = new File(DraimDonate.getInstance().getDataFolder(), "db.yml");
         this.fc = YamlConfiguration.loadConfiguration(this.f);
     }
 
+    /**
+     * Gets config.
+     *
+     * @return the config.
+     */
     public FileConfiguration getCFG() {
         if (this.fc == null) {
             this.reloadCFG();
@@ -45,6 +56,9 @@ public class DBCore
         return this.fc;
     }
 
+    /**
+     * Save config.
+     */
     public void saveCFG() {
         try {
             this.getCFG().save(this.f);
@@ -54,6 +68,11 @@ public class DBCore
         }
     }
 
+    /**
+     * Gets database.
+     *
+     * @return the database
+     */
     public static DBCore getDB() {
         return DBCore.dbc;
     }

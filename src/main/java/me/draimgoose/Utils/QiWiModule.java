@@ -27,14 +27,32 @@ import java.util.Currency;
 import java.util.HashMap;
 import java.util.UUID;
 
+/**
+ * The type Qi wi module.
+ */
 public class QiWiModule
 {
+    /**
+     * The constant client.
+     */
     public static BillPaymentClient client;
     private static HashMap<UUID, String> clients;
+
+    /**
+     * Gets clients.
+     *
+     * @return the clients
+     */
     public static HashMap<UUID, String> getClients() {
         return QiWiModule.clients;
     }
 
+    /**
+     * Generate bill.
+     *
+     * @param p   the player
+     * @param sum the sum
+     */
     public static void generateBill(final Player p, final int sum) {
         if(!getClients().containsKey(p.getUniqueId())) {
              final CreateBillInfo billInfo = new CreateBillInfo(UUID.randomUUID().toString(), new MoneyAmount(BigDecimal.valueOf(sum), Currency.getInstance(MainConfig.getMain().getCFG().getString("DraimDonate.Currency"))), "Пополнение баланса игрока " + p.getName(), ZonedDateTime.now().plusHours(1L), new Customer(MainConfig.getMain().getCFG().getString("DraimDonate.Email"), UUID.randomUUID().toString(), MainConfig.getMain().getCFG().getString("DraimDonate.Phone")), MainConfig.getMain().getCFG().getString("DraimDonate.Site"));
@@ -63,6 +81,11 @@ public class QiWiModule
         }
     }
 
+    /**
+     * On paid.
+     *
+     * @param p the player
+     */
     public static void onPaid(final Player p) {
         final BillResponse response = QiWiModule.client.getBillInfo(getClients().get(p.getUniqueId()));
         final int amount = response.getAmount().getValue().intValue() * MainConfig.getMain().getCFG().getInt("DraimDonate.Multiplication");
@@ -74,6 +97,11 @@ public class QiWiModule
         MessageUtils.sendLog(ChatColor.LIGHT_PURPLE + p.getName() + " "+MessageUtils.config("config","Messages.Console.Message", p, amount));
     }
 
+    /**
+     * Check bill.
+     *
+     * @param p the player
+     */
     public static void checkBill(final Player p) {
         final BillResponse response = QiWiModule.client.getBillInfo(getClients().get(p.getUniqueId()));
         switch (response.getStatus().getValue()) {
